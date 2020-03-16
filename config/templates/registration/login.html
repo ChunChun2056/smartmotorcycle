@@ -1,0 +1,11 @@
+<style>
+    .loginForm p {
+        font-style: italic;
+    }
+</style>
+<h2>Login</h2>
+<form method="post" class="loginForm">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Login</button>
+</form>

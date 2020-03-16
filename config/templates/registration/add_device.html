@@ -1,0 +1,23 @@
+<h4> <a href="{% url 'home' %}"> Home </a> </h4>
+
+{% if messages %}
+<br> 
+{% for message in messages %}
+<strong class="{{ message.tags }}">{{ message }}</strong>
+{% endfor %}
+<br> <br>
+{% endif %}
+
+<h4> Add New Device For The User </h4>
+<form method="post">
+    {% csrf_token %}
+    <label> Users </label> <br>
+    <select name="user" required>
+        <option value="" selected disabled> Select User </option>
+        {% for user in users %}
+        <option value="{{user.pk}}">{{user.user.username}}</option>
+        {% endfor %}
+    </select>
+    <hr>
+    <button type="submit">Add</button> 
+</form>
