@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '=))jkt_i!_hfmwa087pv234gdac88%h@um!)u!=jvds5ku62%e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -124,4 +124,3 @@ LOGIN_REDIRECT_URL = '/'
 
 from .local_settings import *
 
-print(ALLOWED_HOSTS)
