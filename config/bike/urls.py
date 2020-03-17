@@ -13,4 +13,7 @@ urlpatterns = [
     ### API
     path('location/<pk>', views.device_location, name='get-device-location'),
     path('set-location/<pk>', views.set_location, name='set-device-location'),
+
+    ### Auth
+    path("authenticate/<username>/<password>", views.authenticate_user, name="authenticate"),
 ]

@@ -2,14 +2,31 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import JsonResponse, HttpResponseBadRequest
+from django.http import JsonResponse, HttpResponseBadRequest, HttpResponse
 from django.contrib.auth.models import User 
+from django.contrib.auth import login
 # from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from django.db import IntegrityError   
 from .models import Devices, Customers, Location
+import json
 # Create your views here.
+
+@csrf_exempt
+def authenticate_user(request, **kwargs):
+    username = kwargs.get('username')
+    password = kwargs.get('password')
+
+    try:
+        user = User.objects.get(username=username)
+        status = user.check_password(password)
+        if not status:
+            raise Exception
+    except:
+        status = False
+
+    return HttpResponse(json.dumps(status))
 
 @csrf_exempt
 def set_location(request, **kwargs):
